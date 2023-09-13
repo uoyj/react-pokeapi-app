@@ -55,8 +55,10 @@ function App() {
   return (
     <>
       <div className="wrapper" style={{marginBottom:'3em'}}>
-        <header className="header">PokeAPI Exercise App</header>
-        <article className="main">
+        <header className="header">
+          <h2 className='header-title'>PokeAPI Exercise App</h2>
+        </header>
+        <article className="main-container">
           <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
         </article>
         <aside className="aside aside-1">

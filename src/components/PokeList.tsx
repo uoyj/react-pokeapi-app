@@ -1,3 +1,5 @@
+import "./PokeList.scss"
+
 export interface PokeListItem{
   name: string 
   url: string
@@ -9,10 +11,10 @@ interface PokeListProps {
 
 export default function PokeList({list}:PokeListProps) {
   return (
-    <div>
+    <div className="poke-list">
       {list.map((p, index) => {
         return (
-          <div key={index}>{p.name}</div>
+          <div className="poke-list-item" key={index}>{p.name}</div>
         )
       })}
     </div>

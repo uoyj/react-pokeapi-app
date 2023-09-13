@@ -21,3 +21,18 @@ th, td
 h1, h2, h3, h4, h5, h6, th, td, caption { font-weight:normal; }
 
 img { border: 0; }
+
+/* index */
+
+html{
+  height: 100%;
+}
+
+body{
+  min-height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#root{
+  min-height: 100vh
+}
