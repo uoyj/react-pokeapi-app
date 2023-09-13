@@ -1,6 +1,7 @@
 import './App.css'
 import { useEffect, useState } from 'react'
 import PokeList, { PokeListItem } from './components/PokeList'
+import Pagination from './components/Pagination'
 import axios from 'axios'
 
 interface ResourceList{
@@ -42,10 +43,19 @@ function App() {
     } 
   }, [currentListUrl]) //end useEffect
 
+  function nextList(){
+    setCurrentListUrl(nextListUrl)
+  }
+
+  function previousList(){
+    setCurrentListUrl(prevListUrl)
+  }
+
   if(loading) return "Loading..."
   return (
     <>
-      <PokeList list={pokemonList}></PokeList>
+      <PokeList list={pokemonList} />
+      <Pagination goBack={prevListUrl ? previousList : null} goForward={nextListUrl ? nextList : null}/>
     </>
   )
 }
