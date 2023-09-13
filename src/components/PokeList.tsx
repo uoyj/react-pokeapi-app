@@ -7,7 +7,7 @@ interface PokeListProps {
   list: PokeListItem[]
 }
 
-export function PokeList({list}:PokeListProps) {
+export default function PokeList({list}:PokeListProps) {
   return (
     <div>
       {list.map((p, index) => {
