@@ -55,7 +55,7 @@ function App() {
   return (
     <>
       <PokeList list={pokemonList} />
-      <Pagination goBack={prevListUrl ? previousList : null} goForward={nextListUrl ? nextList : null}/>
+      <Pagination goBack={prevListUrl ? previousList : undefined} goForward={nextListUrl ? nextList : undefined}/>
     </>
   )
 }

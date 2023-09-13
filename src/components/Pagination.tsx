@@ -1,13 +1,13 @@
 interface PaginationProps{
-    goForward: (()=>void) | null 
-    goBack: (()=>void) | null 
+    goForward: (()=>void) | undefined 
+    goBack: (()=>void) | undefined 
 }
 
 export default function Pagination( { goBack, goForward } : PaginationProps) {
   return (
     <div>
-        {goBack && <button onClick={goBack}>Previous</button>}
-        {goForward && <button onClick={goForward}>Next</button>}
+        <button onClick={goBack} disabled={!goBack}>Previous</button>
+        <button onClick={goForward} disabled={!goForward}>Next</button>
     </div>
   )
 }
