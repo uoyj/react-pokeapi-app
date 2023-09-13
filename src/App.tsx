@@ -1,13 +1,13 @@
-import './App.css'
+import './App.scss'
 import { useEffect, useState } from 'react'
 import PokeList, { PokeListItem } from './components/PokeList'
 import Pagination from './components/Pagination'
 import axios from 'axios'
 
-interface ResourceList{
-  count:number
-  next:string
-  previous:string
+interface ResourceList {
+  count: number
+  next: string
+  previous: string
   results: []
 }
 
@@ -22,12 +22,12 @@ function App() {
   useEffect(() => {
     let isMounted = true
     setLoading(true)
-    
+
     const cancelControl = new AbortController()
-    axios.get(currentListUrl,{
+    axios.get(currentListUrl, {
       signal: cancelControl.signal
-    }).then(resp =>{
-      const data:ResourceList = resp.data
+    }).then(resp => {
+      const data: ResourceList = resp.data
       setNextListUrl(data.next)
       setPrevListUrl(data.previous)
       setPokemonList(data.results)
@@ -40,22 +40,34 @@ function App() {
     return () => { //destructor
       isMounted = false
       isMounted && cancelControl.abort()
-    } 
+    }
   }, [currentListUrl]) //end useEffect
 
-  function nextList(){
+  function nextList() {
     setCurrentListUrl(nextListUrl)
   }
 
-  function previousList(){
+  function previousList() {
     setCurrentListUrl(prevListUrl)
   }
 
-  if(loading) return "Loading..."
+  if (loading) return "Loading..."
   return (
     <>
-      <PokeList list={pokemonList} />
-      <Pagination goBack={prevListUrl ? previousList : undefined} goForward={nextListUrl ? nextList : undefined}/>
+      <div className="wrapper" style={{marginBottom:'3em'}}>
+        <header className="header">PokeAPI Exercise App</header>
+        <article className="main">
+          <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+        </article>
+        <aside className="aside aside-1">
+          <PokeList list={pokemonList} />
+          <Pagination goBack={prevListUrl ? previousList : undefined} goForward={nextListUrl ? nextList : undefined} />
+        </aside>
+        <aside className="aside aside-2">Aside 2</aside>
+        <footer className="footer">Footer</footer>
+      </div>
+      
+      
     </>
   )
 }
