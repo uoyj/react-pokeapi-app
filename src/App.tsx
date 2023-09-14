@@ -21,11 +21,11 @@ function App() {
   const [prevListUrl, setPrevListUrl] = useState("")
   const [currentPokemon, setCurrentPokemon] = useState<PokemonData>(new PokemonData())
   const [currentPokemonLoading, setCurrentPokemonLoading] = useState(true)
-  const [loading, setLoading] = useState(true)
+  const [listLoading, setListLoading] = useState(true)
 
   useEffect(() => { 
     let isMounted = true
-    setLoading(true)
+    setListLoading(true)
 
     const cancelControl = new AbortController()
     axios.get(currentListUrl, {
@@ -35,7 +35,7 @@ function App() {
       setNextListUrl(data.next)
       setPrevListUrl(data.previous)
       setPokemonList(data.results)
-      setLoading(false)
+      setListLoading(false)
     }).catch((error) => {
       if (axios.isCancel(error)) throw error
       else return
@@ -71,7 +71,6 @@ function App() {
     setCurrentListUrl(prevListUrl)
   }
 
-  if (loading) return "Loading..."
   return (
     <>
       <div className="wrapper" style={{marginBottom:'3em'}}>
@@ -82,7 +81,7 @@ function App() {
           <Pokemon data={currentPokemon} loading={currentPokemonLoading} />
         </article>
         <aside className="aside aside-1">
-          <PokeList list={pokemonList} onItemClick={onPokeListItemClick} />
+          <PokeList list={pokemonList} onItemClick={onPokeListItemClick} loading={listLoading} />
           <Pagination goBack={prevListUrl ? previousList : undefined} goForward={nextListUrl ? nextList : undefined} />
         </aside>
         <aside className="aside aside-2">Aside 2</aside>

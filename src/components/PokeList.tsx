@@ -8,9 +8,11 @@ export interface IPokeListItem{
 interface IPokeListProps {
   list: IPokeListItem[]
   onItemClick: (name:string)=>void
+  loading: boolean
 }
 
-export default function PokeList({list,onItemClick}:IPokeListProps) {
+export default function PokeList({list,onItemClick,loading}:IPokeListProps) {
+  if (loading) return "Loading..."
   return (
     <div className="poke-list">
       {list.map((p, index) => {
