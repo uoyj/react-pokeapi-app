@@ -1,4 +1,15 @@
-export default interface IPokemonData{
+export interface IPokemonDataLists{
+    abilities:IAbility[]
+    forms:INamedAPIResource[]
+    game_indices:[]
+    held_items:[]
+    moves:IMove[]
+    stats:[]
+    types:[]
+    past_types:[]
+}
+
+export default interface IPokemonData extends IPokemonDataLists{
     name:string
     id:number
     base_experience:number
@@ -6,33 +17,25 @@ export default interface IPokemonData{
     is_default:boolean
     order:number
     weight:number
-    abilities:IAbility[]
-    forms:[]
-    game_indices:[]
     location_area_encounters:string
-    held_items:[]
-    moves:IMove[]
-    species:INameUrl
+    species:INamedAPIResource
     sprites:{back_default:string, back_female:string, back_shiny:string, back_shiny_female:string, front_default:string, front_female:string, front_shiny:string, front_shiny_female:string}
-    stats:[]
-    types:[]
-    past_types:[]
 }
 
-export interface INameUrl{
+export interface INamedAPIResource{
     name: string,
     url: string
 }
 
 export interface IAbility{
-    ability:INameUrl
+    ability:INamedAPIResource
     is_hidden:boolean
     slot:number
 }
 
 export interface IMove{
-    move:INameUrl
-    version_group_details:{level_learned_at:number, move_learn_method:INameUrl, version_group:INameUrl}[]
+    move:INamedAPIResource
+    version_group_details:{level_learned_at:number, move_learn_method:INamedAPIResource, version_group:INamedAPIResource}[]
 }
 
 export class PokemonData implements IPokemonData{
@@ -44,12 +47,12 @@ export class PokemonData implements IPokemonData{
     order:number
     weight:number
     abilities:IAbility[]
-    forms:[]
+    forms:INamedAPIResource[]
     game_indices:[]
     location_area_encounters:string
     held_items:[]
     moves:IMove[]
-    species:INameUrl
+    species:INamedAPIResource
     sprites:{back_default:string, back_female:string, back_shiny:string, back_shiny_female:string, front_default:string, front_female:string, front_shiny:string, front_shiny_female:string}
     stats:[]
     types:[]
