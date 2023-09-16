@@ -2,101 +2,91 @@
 @import './variables.scss';
 
 .header {
-    background: tomato;
+    background: #000000;
+    height: 60px;
+    padding: 0.1em;
 }
 
 .header-title {
+    color: #ffffff;
+    font-size: 1.2em;
     text-align: center;
 }
 
-.main-container {
+.container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    flex: auto;
+}
+
+.col-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.col-main {
     padding: 1em;
     text-align: left;
-    background: deepskyblue;
-    min-height: 80vh
+    background: #fd7b47;
+    order: 1;
+}
+
+.col-aside-left {
+    background: #ecdcda;
+    order: 3;
+    padding: 1em;
+}
+
+.col-aside-right {    
+    background: #ecdcda;
+    order: 2;
+    padding: 1em;
 }
 
 .footer {
+    flex: 1;
+    background: #000000;
+    color: #ffffff;
     padding: 1em;
-    background: lightgreen;
-}
-
-.aside {
-    padding: 1em;
-}
-
-.aside-1 {
-    background: gold;
-}
-
-.aside-2 {
-    background: hotpink;
-}
-
-/* adapted from css-tricks */
-
-.wrapper {
-    display: flex;
-    flex-flow: row wrap;
-    min-height: inherit;
-    align-items: stretch;
-}
-
-.wrapper>* {
-    flex: 1 100%;
-}
-
-@media all and (max-width: map.get($grid-breakpoints, 'sm')) {
-    .main-container {
-        order: 1;
-        min-height: 40vh
-    }
-
-    .aside-2 {
-        order : 2;
-    }
-
-    .aside-1 {
-        order: 3;
-    }
-
-    .footer {
-        order: 4;
-    }
-    
-}
-
-@media all and (min-width: map.get($grid-breakpoints, 'sm')) {
-    .aside {
-        flex: 1 auto;
-    }
-}
-
-
-@media all and (max-width: map.get($grid-breakpoints, 'md')) {
-    .main-container {
-        min-height: 40vh
-    }
 }
 
 @media all and (min-width: map.get($grid-breakpoints, 'md')) {
-    .main-container {
-        flex: 3 0px;
+    .col-wrapper {
+        flex-direction: row;
     }
 
-    .aside-1 {
+    .col-aside{
+        flex: 1 0 0;
+    }
+    
+    .col-main{
+        flex: 1 1 100%;   
         order: 1;
     }
 
-    .main-container {
+    .col-aside-left{             
         order: 2;
     }
-
-    .aside-2 {
-        order : 3;
+    
+    .col-aside-right{
+        order: 3;
     }
+}
 
-    .footer {
-        order: 4;
+@media all and (min-width: map.get($grid-breakpoints, 'lg')) {
+    
+    .col-aside-left{        
+        order: 1;
+    }
+    
+    .col-main{
+        flex: 3 0 0;
+        order: 2;
+    }
+    
+    .col-aside-right{
+        order: 3;
     }
 }

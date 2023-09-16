@@ -73,22 +73,21 @@ function App() {
 
   return (
     <>
-      <div className="wrapper" style={{marginBottom:'3em'}}>
-        <header className="header">
-          <h2 className='header-title'>PokeAPI Exercise App</h2>
-        </header>
-        <article className="main-container">
+      <header className="header">
+        <h2 className='header-title'>PokeAPI Responsive Exercise App</h2>
+      </header>
+      <main className="container col-wrapper">
+        <article className="col-main">
           <Pokemon data={currentPokemon} loading={currentPokemonLoading} />
         </article>
-        <aside className="aside aside-1">
+        <aside className="col-aside col-aside-left">
           <PokeList list={pokemonList} onItemClick={onPokeListItemClick} loading={listLoading} />
           <Pagination goBack={prevListUrl ? previousList : undefined} goForward={nextListUrl ? nextList : undefined} />
         </aside>
-        <aside className="aside aside-2">Aside 2</aside>
-        <footer className="footer">Footer</footer>
-      </div>
+        <aside className="col-aside col-aside-right">Aside 2</aside>
+      </main>
       
-      
+      <footer className="footer">uoyj @ github</footer>
     </>
   )
 }
