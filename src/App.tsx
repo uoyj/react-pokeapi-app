@@ -55,7 +55,6 @@ function App() {
       signal: cancelControl.signal
     }).then(resp => {
       setCurrentPokemon(resp.data)
-      console.log(resp.data)
       setCurrentPokemonLoading(false)
     }).catch((error) => {
       if (axios.isCancel(error)) throw error
@@ -84,7 +83,7 @@ function App() {
           <PokeList list={pokemonList} onItemClick={onPokeListItemClick} loading={listLoading} />
           <Pagination goBack={prevListUrl ? previousList : undefined} goForward={nextListUrl ? nextList : undefined} />
         </aside>
-        <aside className="col-aside col-aside-right">Aside 2</aside>
+        <aside className="col-aside col-aside-right">Under construction...</aside>
       </main>
       
       <footer className="footer">uoyj @ github</footer>

@@ -1,12 +1,12 @@
 export interface IPokemonDataLists{
-    abilities:IAbility[]
+    abilities:IPokemonAbility[]
     forms:INamedAPIResource[]
-    game_indices:[]
-    held_items:[]
-    moves:IMove[]
-    stats:[]
-    types:[]
-    past_types:[]
+    game_indices:IVersionGameIndex[]
+    held_items:IPokemonHeldItem[]
+    moves:IPokemonMove[]
+    stats:IPokemonStat[]
+    types:IPokemonType[]
+    past_types:IPokemonTypePast[]
 }
 
 export default interface IPokemonData extends IPokemonDataLists{
@@ -27,15 +27,41 @@ export interface INamedAPIResource{
     url: string
 }
 
-export interface IAbility{
+export interface IPokemonAbility{
     ability:INamedAPIResource
     is_hidden:boolean
     slot:number
 }
 
-export interface IMove{
+export interface IVersionGameIndex{
+    game_index: number
+    version: INamedAPIResource
+}
+
+export interface IPokemonHeldItem{
+    version:INamedAPIResource
+    rarity: number
+}
+
+export interface IPokemonMove{
     move:INamedAPIResource
     version_group_details:{level_learned_at:number, move_learn_method:INamedAPIResource, version_group:INamedAPIResource}[]
+}
+
+export interface IPokemonStat{
+    stat:INamedAPIResource
+    effort:number
+    base_stat:number
+}
+
+export interface IPokemonType{
+    type:INamedAPIResource
+    slot: number
+}
+
+export interface IPokemonTypePast{
+    generation:INamedAPIResource
+    types: IPokemonType
 }
 
 export class PokemonData implements IPokemonData{
@@ -46,17 +72,17 @@ export class PokemonData implements IPokemonData{
     is_default:boolean
     order:number
     weight:number
-    abilities:IAbility[]
+    abilities:IPokemonAbility[]
     forms:INamedAPIResource[]
-    game_indices:[]
+    game_indices:IVersionGameIndex[]
     location_area_encounters:string
-    held_items:[]
-    moves:IMove[]
+    held_items:IPokemonHeldItem[]
+    moves:IPokemonMove[]
     species:INamedAPIResource
     sprites:{back_default:string, back_female:string, back_shiny:string, back_shiny_female:string, front_default:string, front_female:string, front_shiny:string, front_shiny_female:string}
-    stats:[]
-    types:[]
-    past_types:[]
+    stats:IPokemonStat[]
+    types:IPokemonType[]
+    past_types:IPokemonTypePast[]
 
     constructor()
     constructor(obj: IPokemonData)
