@@ -1,9 +1,43 @@
 .poke-list{
     overflow: auto;
+    display: flex;
+    flex-direction: column;
 }
 
+/* adapted from Semantic UI */
 .poke-list-item{
+    cursor: pointer;
     display: block;
-    margin: 0.15em;
+    min-height: 1em;
+    outline: 0;
+    border: none;
+    background: #e0e1e2 none;
+    color: #767676!important;
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+    margin: 0 0.25em 0.25em 0;
+    padding: 0.5em 1.5em 0.5em;
     text-transform: capitalize;
+    text-shadow: none;
+    font-weight: 700;
+    line-height: 1em;
+    font-style: normal;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 0.28571429rem;
+    box-shadow: 0 0 0 1px #767676 inset!important;
+    user-select: none;
+    transition: opacity .1s ease,background-color .1s ease,color .1s ease,box-shadow .1s ease,background .1s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.poke-list-item-inverted:focus {
+    background: #fff;
+    box-shadow: 0 0 0 2px #fff inset!important;
+    color: rgba(0,0,0,.8);
+}
+
+.poke-list-item-inverted:hover {
+    background: #fff;
+    box-shadow: 0 0 0 2px #fff inset!important;
+    color: rgba(0,0,0,.8);
 }

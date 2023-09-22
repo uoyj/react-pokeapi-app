@@ -17,7 +17,7 @@ export default function PokeList({list,onItemClick,loading}:IPokeListProps) {
     <div className="poke-list">
       {list.map((p, index) => {
         return (
-          <button className="poke-list-item" onClick={()=>onItemClick(p.name)} key={index}>{p.name}</button>
+          <button className="poke-list-item poke-list-item-inverted" onClick={()=>onItemClick(p.name)} key={index}>{p.name}</button>
         )
       })}
     </div>

@@ -93,14 +93,31 @@ export default function Pokemon({data, loading}:PokemonProps) {
                         )
                     })}
                 </div>
-                <div>species_name: {data.species.name}</div>
-                <div><img src={data.sprites.front_default} /></div>
-                <div><img src={data.sprites.front_shiny} /></div>
-                <div><img src={data.sprites.front_female} /></div>
-                <div><img src={data.sprites.back_default} /></div>
-                <div><img src={data.sprites.back_female} /></div>
-                <div><img src={data.sprites.back_shiny} /></div>
-                
+                <section className="pokemon-details-section">
+                    <div className="pokemon-details-item" >
+                        <div className="pokemon-details-item-title">Species Name</div>
+                        <div className="pokemon-details-item-spacer"></div>
+                        <div className="pokemon-details-item-value">{data.species.name}</div>
+                    </div>
+                </section>
+                <div className="pokemon-details-sprites-container">
+                    <div className="pokemon-details-sprites-container block">
+                    <div className="pokemon-details-sprites-container block-title">Male</div>
+                        <div className="block-img"><img src={data.sprites.front_default} /></div>
+                        <div className="block-img"><img src={data.sprites.back_default} /></div>
+                    </div>
+                    <div className="pokemon-details-sprites-container block">
+                    <div className="pokemon-details-sprites-container block-title">Female</div>
+                        <div className="block-img"><img src={data.sprites.front_female} /></div>
+                        <div className="block-img"><img src={data.sprites.back_female} /></div>
+                    </div>
+                    <div className="pokemon-details-sprites-container block">
+                    <div className="block-title">Shiny</div>
+                        <div className="block-img"><img src={data.sprites.front_shiny} /></div>
+                        <div className="block-img"><img src={data.sprites.back_shiny} /></div>
+                    </div>
+                    
+                </div>
             </div>
         </div>
     </>
