@@ -1,27 +1,16 @@
-# React + TypeScript + Vite
+# PokeAPI App using React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is an app I've developed as an exercise to learn React.
 
-Currently, two official plugins are available:
+Being set-up with Vite you may clone this project and install it with `npm i`, then
+launch it with `npm run dev`.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+I wanted to show each array within IPokemonDataLists type as a table row with multiple <span> elements.
+But each array is a list of a different object type with an unique property of a type called INamedAPIResource that has a property "name" that I actaully wanted to display.
+One of the arrays actually is a list of INamedAPIResource objects itself.
 
-## Expanding the ESLint configuration
+For that, I wrote parseListObject function in Pokemon.tsx file that access the property that contains the desired INamedAPIResource with an "as" alias.
+There might be a simpler way to do that, but I'm proud of what I've achieved so far 😄
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Regards,
+Jhonatan (uoyj @ Github)

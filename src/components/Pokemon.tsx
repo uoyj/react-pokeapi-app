@@ -1,5 +1,6 @@
 import "./Pokemon.scss"
-import IPokemonData, {IPokemonAbility, IPokemonMove, INamedAPIResource, IPokemonDataLists, IVersionGameIndex, IPokemonHeldItem, IPokemonStat, IPokemonType} from "./IPokemonData"
+import IPokemonData, {INamedAPIResource, IPokemonDataList, IPokemonDataLists} from "./IPokemonData"
+import { ReactNode } from "react"
 
 interface PokemonDataPropKey{
     prop: keyof IPokemonData
@@ -8,7 +9,7 @@ interface PokemonDataPropKey{
 
 interface PokemonDataListPropKey{
     list: keyof IPokemonDataLists
-    object: string /*this could be any of the keys in IPokemonDataLists. How do I it in table rendering call?*/
+    prop: string | null //it's either an object with an INamedAPIResource property or it's a INamedAPIResource itself
     title: string
 }
 
@@ -22,14 +23,14 @@ const DATA_PROPS:PokemonDataPropKey[] = [
 ]
 
 const DATA_LISTS:PokemonDataListPropKey[] = [
-    {list: "abilities", object: "ability" as keyof IPokemonAbility, title: "abilities"},
-    {list: "forms", object: "forms" as keyof INamedAPIResource, title: "forms"},
-    {list: "game_indices", object: "version" as keyof IVersionGameIndex, title: "game indices"},
-    {list: "held_items", object: "version" as keyof IPokemonHeldItem, title: "held items"},
-    {list: "moves", object: "move" as keyof IPokemonMove, title:"moves"},
-    {list: "stats", object: "stat" as keyof IPokemonStat, title:"stats"},
-    {list: "types", object: "type" as keyof IPokemonType, title: "types"},
-    {list: "past_types", object: "generation", title: "past type generation"},
+    {list: "abilities", prop: "ability", title: "abilities"},
+    {list: "forms", prop: null, title: "forms"},
+    {list: "game_indices", prop: "version", title: "game indices"},
+    {list: "held_items", prop: "version", title: "held items"},
+    {list: "moves", prop: "move", title:"moves"},
+    {list: "stats", prop: "stat", title:"stats"},
+    {list: "types", prop: "type", title: "types"},
+    {list: "past_types", prop: "generation", title: "past type generation"},
 ]
 
 interface PokemonProps{
@@ -47,9 +48,16 @@ export default function Pokemon({data, loading}:PokemonProps) {
         return JSON.stringify(data[prop])
     }
 
-    function parseList(list:IPokemonDataLists, object:keyof IPokemonDataLists):string{
-        if(list[object]) return list[object].name
-        return list.name
+    function parseListObject(propKey:PokemonDataListPropKey):ReactNode{
+        const array = data[propKey.list]
+        if(array.length == 0) return (<span>None</span>)
+        
+        return array.map((item, i) => {
+            const objectKey = propKey.prop ? propKey.prop as keyof IPokemonDataList : null
+            const resource = objectKey ? item[objectKey] : item as INamedAPIResource 
+
+            return (<span key={i}>{resource.name} {i!=array.length-1 ? " | " : ""}</span>)
+        })
     }
     
     if (!data.id) return "Please click on a Pokemon name."
@@ -80,11 +88,7 @@ export default function Pokemon({data, loading}:PokemonProps) {
                             <div className="pokemon-details-table-row" key={index}>
                                 <div className="pokemon-details-table-cell pokemon-details-table-cell-title">{item.title}</div>
                                 <div className="pokemon-details-table-cell pokemon-details-table-cell-value">
-                                    {
-                                    data[item.list].map((detail, j)=> {
-                                        return (<span key={j}>{parseList(detail, item.object)} | </span>)
-                                    })
-                                    }{data[item.list].length==0 && "None"}
+                                    {parseListObject(item)}
                                 </div>
                                 <div className="pokemon-details-table-cell pokemon-details-table-cell-aside">
                                     <button>{">>"}</button>

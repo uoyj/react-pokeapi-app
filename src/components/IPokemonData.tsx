@@ -9,6 +9,8 @@ export interface IPokemonDataLists{
     past_types:IPokemonTypePast[]
 }
 
+export type IPokemonDataList = IPokemonAbility | INamedAPIResource | IVersionGameIndex | IPokemonHeldItem | IPokemonMove | IPokemonStat | IPokemonType | IPokemonTypePast
+
 export default interface IPokemonData extends IPokemonDataLists{
     name:string
     id:number
