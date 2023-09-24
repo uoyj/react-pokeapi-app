@@ -21,7 +21,7 @@ export default interface IPokemonData extends IPokemonDataLists{
     weight:number
     location_area_encounters:string
     species:INamedAPIResource
-    sprites:{back_default:string, back_female:string, back_shiny:string, back_shiny_female:string, front_default:string, front_female:string, front_shiny:string, front_shiny_female:string}
+    sprites?:IPokemonSprites
 }
 
 export interface INamedAPIResource{
@@ -66,6 +66,31 @@ export interface IPokemonTypePast{
     types: IPokemonType
 }
 
+export interface IPokemonSprites{
+    back_default:string
+    back_female:string
+    back_shiny:string
+    back_shiny_female:string
+    front_default:string
+    front_female:string
+    front_shiny:string
+    front_shiny_female:string
+    other: IPokemonSpritesOther
+    versions: IPokemonSpritesVersions
+}
+
+export interface IPokemonSpritesOther{
+    dream_world:{front_default:string, front_female:string}
+    home:{front_default:string, front_female:string, front_shiny:string, front_shiny_female:string}
+    "official-artwork":{front_default:string, front_female:string}
+}
+
+export interface IPokemonSpritesVersions{
+    'generation-i': {'red-blue':{front_default:string}},
+    'generation-ii': {'silver':{front_default:string}},
+    'generation-iii': {'ruby-sapphire':{front_default:string}}
+}
+
 export class PokemonData implements IPokemonData{
     name:string
     id:number
@@ -81,7 +106,7 @@ export class PokemonData implements IPokemonData{
     held_items:IPokemonHeldItem[]
     moves:IPokemonMove[]
     species:INamedAPIResource
-    sprites:{back_default:string, back_female:string, back_shiny:string, back_shiny_female:string, front_default:string, front_female:string, front_shiny:string, front_shiny_female:string}
+    sprites?:IPokemonSprites
     stats:IPokemonStat[]
     types:IPokemonType[]
     past_types:IPokemonTypePast[]
@@ -103,7 +128,7 @@ export class PokemonData implements IPokemonData{
         this.held_items = obj?.held_items || []
         this.moves = obj?.moves || []
         this.species = obj?.species || {name:"", url:""}
-        this.sprites = obj?.sprites || {back_default:"", back_female:"", back_shiny:"", back_shiny_female:"", front_default:"", front_female:"", front_shiny:"", front_shiny_female:""}
+        this.sprites = obj?.sprites
         this.stats = obj?.stats || []
         this.types = obj?.types || []
         this.past_types = obj?.past_types || []

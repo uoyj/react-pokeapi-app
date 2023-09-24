@@ -131,24 +131,3 @@ $pokedexred: #EF511D;
     }
 
 }
-
-.pokemon-details-sprites-container{
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-}
-
-.pokemon-details-sprites-container.block{
-    background-color: #ffffff;
-    margin: 0.25em;
-}
-
-.pokemon-details-sprites-container .block-title{
-    background-color: #000000;
-    color: #ffffff;
-    flex: 1 100%;
-    padding: $spacing;
-}
-
-.pokemon-details-sprites-container .block-img{
-}

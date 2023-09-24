@@ -1,6 +1,7 @@
 import "./Pokemon.scss"
 import IPokemonData, {INamedAPIResource, IPokemonDataList, IPokemonDataLists} from "./IPokemonData"
 import { ReactNode } from "react"
+import PokemonSpritesContainer from "./PokemonSpritesContainer"
 
 interface PokemonDataPropKey{
     prop: keyof IPokemonData
@@ -26,7 +27,7 @@ const DATA_LISTS:PokemonDataListPropKey[] = [
     {list: "abilities", prop: "ability", title: "abilities"},
     {list: "forms", prop: null, title: "forms"},
     {list: "game_indices", prop: "version", title: "game indices"},
-    {list: "held_items", prop: "version", title: "held items"},
+    {list: "held_items", prop: "item", title: "held items"},
     {list: "moves", prop: "move", title:"moves"},
     {list: "stats", prop: "stat", title:"stats"},
     {list: "types", prop: "type", title: "types"},
@@ -91,7 +92,7 @@ export default function Pokemon({data, loading}:PokemonProps) {
                                     {parseListObject(item)}
                                 </div>
                                 <div className="pokemon-details-table-cell pokemon-details-table-cell-aside">
-                                    <button>{">>"}</button>
+                                    <button>Expand{">>"}</button>
                                 </div>
                             </div>
                         )
@@ -104,24 +105,8 @@ export default function Pokemon({data, loading}:PokemonProps) {
                         <div className="pokemon-details-item-value">{data.species.name}</div>
                     </div>
                 </section>
-                <div className="pokemon-details-sprites-container">
-                    <div className="pokemon-details-sprites-container block">
-                    <div className="pokemon-details-sprites-container block-title">Male</div>
-                        <div className="block-img"><img src={data.sprites.front_default} /></div>
-                        <div className="block-img"><img src={data.sprites.back_default} /></div>
-                    </div>
-                    <div className="pokemon-details-sprites-container block">
-                    <div className="pokemon-details-sprites-container block-title">Female</div>
-                        <div className="block-img"><img src={data.sprites.front_female} /></div>
-                        <div className="block-img"><img src={data.sprites.back_female} /></div>
-                    </div>
-                    <div className="pokemon-details-sprites-container block">
-                    <div className="block-title">Shiny</div>
-                        <div className="block-img"><img src={data.sprites.front_shiny} /></div>
-                        <div className="block-img"><img src={data.sprites.back_shiny} /></div>
-                    </div>
-                    
-                </div>
+
+                <PokemonSpritesContainer sprites={data.sprites}/>
             </div>
         </div>
     </>
