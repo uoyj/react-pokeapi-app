@@ -1,0 +1,36 @@
+$spacing: 6px;
+
+.pokemon-details-table{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+.pokemon-details-table-row{
+    border-bottom: solid 2px #D2D2D2;
+    display: flex;
+    flex-direction: row;
+    font-size: medium;   
+    text-transform: capitalize; 
+}
+
+.pokemon-details-table-cell{
+    background-color: #ffffff;
+    max-height: 1rem;
+    overflow: hidden;
+    padding: $spacing;
+}
+
+.pokemon-details-table-cell-title{
+    flex: 1 0 20%;
+    background-color: #DBDCD9;
+}
+
+.pokemon-details-table-cell-value{
+    flex: 1 0 60%;
+}
+
+.pokemon-details-table-cell-aside{
+    flex: 1 0 10%;
+}
