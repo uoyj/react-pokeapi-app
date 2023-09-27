@@ -10,8 +10,6 @@ interface PokemonProps{
 }
 
 export default function Pokemon({data, loading}:PokemonProps) {
-    
-
     if (!data.id) return "Please click on a Pokemon name."
     if (loading) return "Loading..."
     return (
@@ -26,14 +24,8 @@ export default function Pokemon({data, loading}:PokemonProps) {
                 <PokemonDetailsSection data={data}/>
 
                 <PokemonDetailsTable data={data} />
-        
-                <section className="pokemon-details-section">
-                    <div className="pokemon-details-item" >
-                        <div className="pokemon-details-item-title">Species Name</div>
-                        <div className="pokemon-details-item-spacer"></div>
-                        <div className="pokemon-details-item-value">{data.species.name}</div>
-                    </div>
-                </section>
+                
+                <PokemonDetailsSection data={data} props={[{prop:"species", title:"Species Name"}]}/>
 
                 <PokemonSpritesContainer sprites={data.sprites}/>
             </div>
