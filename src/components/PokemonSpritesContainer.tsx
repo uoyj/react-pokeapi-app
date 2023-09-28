@@ -1,7 +1,7 @@
 import "./PokemonSpritesContainer.scss"
 import { IPokemonSprites, IPokemonSpritesOther, IPokemonSpritesVersions } from "./IPokemonData"
 
-export default function PokemonSpritesContainer({sprites}:{sprites:IPokemonSprites | undefined}) {
+export default function PokemonSpritesContainer({sprites, onExpand}:{sprites:IPokemonSprites | undefined, onExpand: (data:IPokemonSpritesOther|IPokemonSpritesVersions)=>void}) {
     if(typeof sprites === "undefined") return
 
     const spriteTypes = Object.keys(sprites).map((key)=>{
@@ -48,7 +48,7 @@ export default function PokemonSpritesContainer({sprites}:{sprites:IPokemonSprit
                 </div>
             </div>
             <div className="expand-wrapper">
-                <button>Expand{">>"}</button>
+                <button onClick={()=>onExpand(other)}>Expand{">>"}</button>
             </div>
             </>
             )
@@ -76,7 +76,7 @@ export default function PokemonSpritesContainer({sprites}:{sprites:IPokemonSprit
                 </div>
             </div>
             <div className="expand-wrapper">
-                <button>Expand{">>"}</button>
+                <button onClick={()=>onExpand(versions)}>Expand{">>"}</button>
             </div>
             
             </>

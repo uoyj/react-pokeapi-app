@@ -2,7 +2,7 @@ import "./PokemonDetailsTable.scss"
 import IPokemonData, {INamedAPIResource, IPokemonDataList, IPokemonDataLists} from "./IPokemonData"
 import { ReactNode } from "react"
 
-export default function PokemonDetailsTable({data}:{data: IPokemonData}) {
+export default function PokemonDetailsTable({data, onExpand}:{data: IPokemonData, onExpand: (data:IPokemonDataList[])=>void}) {
 
     interface PokemonDataListPropKey{
         list: keyof IPokemonDataLists
@@ -43,7 +43,7 @@ export default function PokemonDetailsTable({data}:{data: IPokemonData}) {
                     {parseListObject(item)}
                 </div>
                 <div className="pokemon-details-table-cell pokemon-details-table-cell-aside">
-                    <button>Expand{">>"}</button>
+                    <button onClick={()=>onExpand(data[item.list])}>Expand{">>"}</button>
                 </div>
             </div>
         )

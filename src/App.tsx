@@ -5,6 +5,7 @@ import { PokemonData } from './components/IPokemonData'
 import PokeList, { IPokeListItem } from './components/PokeList'
 import Pagination from './components/Pagination'
 import axios from 'axios'
+import PokemonAside from './components/PokemonAside'
 
 interface ResourceList {
   count: number
@@ -22,6 +23,7 @@ function App() {
   const [currentPokemon, setCurrentPokemon] = useState<PokemonData>(new PokemonData())
   const [currentPokemonLoading, setCurrentPokemonLoading] = useState(true)
   const [listLoading, setListLoading] = useState(true)
+  const [pokemonAside, setPokemonAside] = useState<object| []>({})
 
   useEffect(() => { 
     let isMounted = true
@@ -70,6 +72,10 @@ function App() {
     setCurrentListUrl(prevListUrl)
   }
 
+  function PokemonOnExpand(data: object|[]){
+    setPokemonAside(data)
+  }
+
   return (
     <>
       <header className="header">
@@ -77,13 +83,15 @@ function App() {
       </header>
       <main className="container col-wrapper">
         <article className="col-main">
-          <Pokemon data={currentPokemon} loading={currentPokemonLoading} />
+          <Pokemon data={currentPokemon} loading={currentPokemonLoading} onExpand={PokemonOnExpand}/>
         </article>
         <aside className="col-aside col-aside-left">
           <PokeList list={pokemonList} onItemClick={onPokeListItemClick} loading={listLoading} />
           <Pagination goBack={prevListUrl ? previousList : undefined} goForward={nextListUrl ? nextList : undefined} />
         </aside>
-        <aside className="col-aside col-aside-right">Under construction...</aside>
+        <aside className="col-aside col-aside-right">
+          <PokemonAside data={pokemonAside}/>
+        </aside>
       </main>
       
       <footer className="footer">uoyj @ github</footer>
