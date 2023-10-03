@@ -1,4 +1,4 @@
-import './App.scss'
+//import './App.scss'
 import { useEffect, useState } from 'react'
 import Pokemon from './components/Pokemon'
 import { PokemonData } from './components/IPokemonData'
@@ -73,6 +73,7 @@ function App() {
   }
 
   function PokemonOnExpand(data: object|[]){
+    console.log(data)
     setPokemonAside(data)
   }
 
